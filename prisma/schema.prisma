@@ -1,0 +1,118 @@
+// مخطط قاعدة بيانات روافد سبأ
+// المزوّد الحالي: SQLite للتطوير المحلي.
+// للإنتاج: غيّر provider إلى "postgresql" و DATABASE_URL فقط — المخطط متوافق.
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+/// مستخدمو لوحة التحكم (مدير / محرر)
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String // مشفّرة بـ bcrypt
+  role      String   @default("editor") // "admin" | "editor"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+/// فئات المعدات
+model Category {
+  id        String      @id @default(cuid())
+  slug      String      @unique
+  nameAr    String
+  nameEn    String
+  image     String      @default("") // صورة بطاقة الفئة
+  operator  String      @default("operated") // "both" | "operated" | "self"
+  hidden    Boolean     @default(false) // حجب الفئة عن الموقع
+  order     Int         @default(0)
+  equipment Equipment[]
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+}
+
+/// وحدات المعدات
+model Equipment {
+  id          String   @id @default(cuid())
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  nameAr      String
+  nameEn      String
+  image       String
+  // مواصفات مرنة كسلسلة JSON (متوافق مع SQLite و Postgres)
+  specs       String   @default("{}")
+  status      String   @default("available") // "available" | "rented" | "hidden"
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+/// طلبات عروض الأسعار الواردة
+model QuoteRequest {
+  id        String   @id @default(cuid())
+  name      String
+  phone     String
+  company   String?
+  category  String // slug أو "other"
+  duration  String   @default("unspecified")
+  city      String
+  details   String?
+  locale    String   @default("ar")
+  status    String   @default("new") // new | contacted | quoted | won | lost
+  notes     String? // ملاحظات داخلية
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+/// المشاريع
+model Project {
+  id          String   @id @default(cuid())
+  titleAr     String
+  titleEn     String
+  tagAr       String
+  tagEn       String
+  image       String
+  descAr      String?
+  descEn      String?
+  order       Int      @default(0)
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+/// مقالات المدونة
+model Post {
+  id        String    @id @default(cuid())
+  slug      String    @unique
+  titleAr   String
+  titleEn   String
+  bodyAr    String
+  bodyEn    String
+  cover     String?
+  published Boolean   @default(false)
+  publishedAt DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+/// ملفات مركز التحميل
+model DownloadFile {
+  id        String   @id @default(cuid())
+  titleAr   String
+  titleEn   String
+  file      String
+  size      String?
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+/// إعدادات عامة (مفتاح/قيمة)
+model Setting {
+  key   String @id
+  value String
+}

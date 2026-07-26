@@ -1,0 +1,296 @@
+{
+  "meta": {
+    "siteName": "Rawafid Saba Co. Ltd.",
+    "title": "Rawafid Saba Co. Ltd. | Heavy Equipment Rental in Riyadh, Saudi Arabia",
+    "description": "A Saudi company specialized in heavy equipment rental, lifting and handling equipment, and project support solutions. 273+ machines ready to work across Riyadh and the Kingdom."
+  },
+  "nav": {
+    "home": "Home",
+    "activities": "Our Activities",
+    "equipment": "Equipment",
+    "services": "Services",
+    "projects": "Projects",
+    "about": "About Us",
+    "blog": "Blog",
+    "downloads": "Downloads",
+    "contact": "Contact",
+    "requestQuote": "Request a Quote"
+  },
+  "hero": {
+    "eyebrow": "Saudi Company — Riyadh · Since 2018",
+    "title": "Streams converge,",
+    "titleAccent": "a future we build.",
+    "subtitle": "A fleet of 273+ heavy machines, lifting and handling equipment — with professional operators and site-ready delivery across Riyadh and the Kingdom.",
+    "ctaPrimary": "Browse Equipment",
+    "ctaWhatsapp": "WhatsApp Us",
+    "ctaCall": "Call Now",
+    "scrollHint": "Discover more"
+  },
+  "stats": {
+    "title": "Numbers That Speak",
+    "founded": "Founded",
+    "equipment": "Machines in Fleet",
+    "projects": "Projects Delivered",
+    "clients": "Trusted Clients"
+  },
+  "categories": {
+    "eyebrow": "Our Fleet",
+    "title": "Equipment for Every Task on Site",
+    "subtitle": "Eight categories covering lifting, handling, excavation, and lighting — operated or bare rental.",
+    "viewAll": "Browse the Full Fleet",
+    "forklifts": "Forklifts",
+    "mobile-cranes": "Mobile Cranes",
+    "jcb-backhoes": "JCB Backhoes",
+    "bobcats": "Bobcats",
+    "scissor-lifts": "Scissor Lifts",
+    "man-lifts": "Man Lifts",
+    "tower-lights": "Tower Lights",
+    "telehandlers": "Telehandlers"
+  },
+  "services": {
+    "eyebrow": "Our Services",
+    "title": "More Than Rental — Full Project Support",
+    "subtitle": "From first site visit to project close-out, our team and fleet work as one stream.",
+    "operated-rental": {
+      "title": "Operated Rental",
+      "desc": "Professional, safety-certified operators with every machine that demands expert handling."
+    },
+    "bare-rental": {
+      "title": "Bare Rental",
+      "desc": "For lighter equipment like forklifts and bobcats — take the machine and run it with your crew."
+    },
+    "flexible-terms": {
+      "title": "Flexible Terms",
+      "desc": "Daily, weekly, or monthly — rental periods sized to your project and budget."
+    },
+    "transport": {
+      "title": "Equipment Transport",
+      "desc": "We deliver to your site in Riyadh and across the Kingdom, and haul away when you're done."
+    },
+    "maintenance": {
+      "title": "On-Site Maintenance",
+      "desc": "A ready field team comes to you — your fleet's uptime is our responsibility for the whole contract."
+    },
+    "site-assessment": {
+      "title": "Site Assessment",
+      "desc": "We survey your site and specify the right equipment before you pay a single riyal."
+    }
+  },
+  "why": {
+    "eyebrow": "Why Rawafid Saba",
+    "title": "A Partner That Rises With You",
+    "readiness": {
+      "title": "Instant Readiness",
+      "desc": "A 273+ machine fleet with documented routine maintenance — every unit arrives ready to work."
+    },
+    "operators": {
+      "title": "Professional Operators",
+      "desc": "Trained, licensed crews who run machines safely and efficiently."
+    },
+    "response": {
+      "title": "Fast Response",
+      "desc": "Same-day replies, and delivery scheduled around your project — not ours."
+    },
+    "coverage": {
+      "title": "Kingdom-Wide Coverage",
+      "desc": "From Riyadh to every city — our equipment works wherever your projects do."
+    }
+  },
+  "cta": {
+    "title": "Your Next Project Deserves Equipment That Shows Up",
+    "subtitle": "Tell us what you need today and get your quote fast.",
+    "primary": "Request a Quote Now",
+    "orWhatsapp": "or reach us directly on WhatsApp"
+  },
+  "equipmentPage": {
+    "eyebrow": "The Rawafid Saba Fleet",
+    "title": "Browse Our Equipment",
+    "subtitle": "273+ machines across eight categories — all with documented maintenance, ready to work across Riyadh and the Kingdom. Pick a category, send your request, and get your quote fast.",
+    "searchPlaceholder": "Search equipment…",
+    "unitsShort": "units",
+    "categoryTitlePrefix": "Rent",
+    "backToCategories": "All Categories",
+    "noUnitsYet": "No units currently available in this category — contact us and we'll source them.",
+    "filterAll": "All Categories",
+    "resultsOne": "1 unit",
+    "resultsMany": "{count} units available",
+    "noResults": "No matching results — try another category.",
+    "unitLabel": "From the Rawafid Saba fleet",
+    "opBoth": "Operated or bare",
+    "opOperated": "With operator",
+    "opSelf": "Self-operated",
+    "terms": "Daily · Weekly · Monthly",
+    "requestUnit": "Request This Machine",
+    "whatsappMsg": "Hello, I would like to inquire about renting: {name}"
+  },
+  "aboutPage": {
+    "eyebrow": "About Us",
+    "title": "Rawafid Saba Co. Ltd.",
+    "subtitle": "A Saudi company specialized in heavy equipment rental, lifting and handling equipment, and project support solutions — serving Riyadh and the Kingdom since 2018.",
+    "storyTitle": "Our Story",
+    "storyBody": "Rawafid Saba began from a firm conviction: great projects aren't built by equipment alone, but by a partner who arrives on time, works safely, and lifts the project higher. From that conviction we grew — a fleet of 273+ machines, 732+ projects delivered, and the trust of 245+ clients across sectors.",
+    "visionTitle": "Our Vision",
+    "visionBody": "To be the first stream relied upon in contracting, heavy equipment rental, and facade works across the Kingdom — a Saudi brand that cities are built with and urban growth is documented by.",
+    "missionTitle": "Our Mission",
+    "missionBody": "We bring our expertise, equipment, and people into one stream of work — delivering projects with engineering precision, on-time and safe, and offering solutions that create lasting value for our clients, partners, and community.",
+    "valuesEyebrow": "Brand Values",
+    "valuesTitle": "What We Commit To on Every Project",
+    "values": {
+      "excellence": {
+        "title": "Excellence",
+        "desc": "Small details build great structures; we treat every job as our showcase to the world."
+      },
+      "reliability": {
+        "title": "Reliability",
+        "desc": "Our word is a contract; we honor time, spec, and cost — in easy conditions and hard ones."
+      },
+      "safety": {
+        "title": "Safety",
+        "desc": "No project is worth an injury; human safety comes before speed and every other consideration."
+      },
+      "continuity": {
+        "title": "Continuity",
+        "desc": "We build relationships that span decades, not deals that end at handover."
+      },
+      "partnership": {
+        "title": "Partnership",
+        "desc": "Our clients, suppliers, and people are the streams of our success; we grow together or not at all."
+      },
+      "ambition": {
+        "title": "Ambition",
+        "desc": "We measure ourselves by global standards, and see in every project a step higher."
+      }
+    }
+  },
+  "servicesPage": {
+    "eyebrow": "Our Services",
+    "title": "Full Support for Your Project",
+    "subtitle": "From first site visit to project close-out, our team and fleet work as one stream — more than just rental.",
+    "ctaTitle": "Ready to start your project?",
+    "ctaBtn": "Request a Quote"
+  },
+  "projectsPage": {
+    "eyebrow": "Our Work",
+    "title": "Projects We're Proud Of",
+    "subtitle": "Glimpses of our equipment at real sites across Riyadh and the Kingdom — structure lifting, construction work, and support for major projects.",
+    "items": {
+      "p1": { "title": "Steel Structure Lifting", "tag": "Lifting" },
+      "p2": { "title": "Construction Works on Buildings", "tag": "Project Support" },
+      "p3": { "title": "Project Site Preparation", "tag": "Handling" },
+      "p4": { "title": "Height Works on Structures", "tag": "Safe Access" },
+      "p5": { "title": "Interior Works with Scissor Lift", "tag": "Safe Access" },
+      "p6": { "title": "Heavy Lifting at Open Site", "tag": "Lifting" }
+    },
+    "note": "Projects shown are samples of our equipment's work. For more recent projects, get in touch."
+  },
+  "emptyPage": {
+    "blogTitle": "Blog",
+    "blogEyebrow": "Industry Knowledge",
+    "blogBody": "We're preparing specialized content on equipment rental and project management. Check back soon, or reach us to hear what's new.",
+    "downloadsTitle": "Download Center",
+    "downloadsEyebrow": "Files & Documents",
+    "downloadsBody": "Our company profile and equipment catalogs are being prepared and will be available here soon. To get any document now, contact us directly.",
+    "cta": "Contact Us"
+  },
+  "activitiesPage": {
+    "eyebrow": "Our Divisions",
+    "title": "Our Activities",
+    "subtitle": "A multi-division Saudi company — serving your projects from two complementary angles.",
+    "equipmentTitle": "Heavy Equipment Rental",
+    "equipmentDesc": "A complete fleet of lifting, handling, and excavation equipment — with professional operators and site-ready delivery across Riyadh and the Kingdom.",
+    "equipmentCta": "Browse Equipment",
+    "aluminumTitle": "Aluminum & Facades",
+    "aluminumDesc": "Design and installation of aluminum, glass, and cladding facades to precise engineering standards worthy of modern buildings.",
+    "aluminumCta": "Visit Site",
+    "comingSoon": "Coming Soon"
+  },
+  "blogPage": {
+    "eyebrow": "Industry Knowledge",
+    "title": "Blog",
+    "subtitle": "Articles and insights on heavy equipment rental and project management from the Rawafid Saba team.",
+    "readMore": "Read Article",
+    "backToBlog": "Back to Blog",
+    "published": "Published on"
+  },
+  "downloadsPage": {
+    "eyebrow": "Files & Documents",
+    "title": "Download Center",
+    "subtitle": "Download the company profile, equipment catalogs, and official documents of Rawafid Saba.",
+    "download": "Download",
+    "fileLabel": "file"
+  },
+  "contactPage": {
+    "eyebrow": "Get in Touch",
+    "title": "Request a Quote",
+    "subtitle": "Tell us what you need and get your quote fast. Or reach us directly on WhatsApp or by phone — we're ready.",
+    "directTitle": "Fastest Response",
+    "whatsappTitle": "WhatsApp",
+    "whatsappDesc": "Instant reply during business hours",
+    "callTitle": "Phone Call",
+    "callDesc": "Talk to our sales team directly",
+    "emailTitle": "Email",
+    "emailPending": "Coming soon",
+    "addressTitle": "Location",
+    "addressValue": "Riyadh, Saudi Arabia",
+    "followUs": "Follow us on",
+    "formTitle": "Quote Request Form",
+    "formNote": "Fields marked * are required. We'll receive your request and get back to you shortly. For an instant reply, use WhatsApp or call us directly.",
+    "fName": "Full Name",
+    "fPhone": "Mobile Number",
+    "fPhoneHint": "e.g. 0538131822",
+    "fCompany": "Company Name (optional)",
+    "fCategory": "Equipment Type",
+    "fCategoryPlaceholder": "Select a category…",
+    "fCategoryOther": "Other / Unspecified",
+    "fDuration": "Rental Period",
+    "durDaily": "Daily",
+    "durWeekly": "Weekly",
+    "durMonthly": "Monthly",
+    "durUnspecified": "Not decided yet",
+    "fCity": "City",
+    "fDetails": "Additional Details (optional)",
+    "fDetailsPlaceholder": "Number of machines, work dates, any special requirements…",
+    "submit": "Send Request",
+    "submitting": "Sending…",
+    "successTitle": "Request Received",
+    "successBody": "Thank you — we've received your request and our team will get back to you shortly. For an instant reply, message us on WhatsApp.",
+    "errorGeneric": "Couldn't send your request. Please try again or reach us on WhatsApp.",
+    "errName": "Please enter your name (at least 2 characters)",
+    "errPhone": "Invalid Saudi mobile number",
+    "errCategory": "Please select an equipment type",
+    "errCity": "Please enter your city",
+    "waHeader": "New Quote Request — Rawafid Saba",
+    "waName": "Name",
+    "waPhone": "Mobile",
+    "waCompany": "Company",
+    "waCategory": "Equipment",
+    "waDuration": "Period",
+    "waCity": "City",
+    "waDetails": "Details"
+  },
+  "common": {
+    "readMore": "Read More",
+    "viewAll": "View All",
+    "available": "Available Now",
+    "rented": "Currently Rented",
+    "withOperator": "With Operator",
+    "withoutOperator": "Bare Rental",
+    "perDay": "Daily",
+    "perWeek": "Weekly",
+    "perMonth": "Monthly",
+    "requestThis": "Request This Machine",
+    "specs": "Technical Specifications",
+    "loading": "Loading…",
+    "language": "العربية",
+    "comingSoon": "This page is under construction — coming soon",
+    "backHome": "Back to Home"
+  },
+  "footer": {
+    "tagline": "Streams converge, a future we build.",
+    "quickLinks": "Quick Links",
+    "ourServices": "Our Services",
+    "contactUs": "Contact Us",
+    "address": "Riyadh, Saudi Arabia",
+    "rights": "All rights reserved"
+  }
+}

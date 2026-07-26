@@ -1,0 +1,48 @@
+{
+  "forklifts": [
+    "/images/equipment/gallery/forklifts/1.jpg",
+    "/images/equipment/gallery/forklifts/2.jpg",
+    "/images/equipment/gallery/forklifts/3.jpg",
+    "/images/equipment/gallery/forklifts/4.jpg"
+  ],
+  "mobile-cranes": [
+    "/images/equipment/gallery/mobile-cranes/1.jpg",
+    "/images/equipment/gallery/mobile-cranes/2.jpg",
+    "/images/equipment/gallery/mobile-cranes/3.jpg",
+    "/images/equipment/gallery/mobile-cranes/4.jpg"
+  ],
+  "jcb-backhoes": [
+    "/images/equipment/gallery/jcb-backhoes/1.jpg",
+    "/images/equipment/gallery/jcb-backhoes/2.jpg",
+    "/images/equipment/gallery/jcb-backhoes/3.jpg",
+    "/images/equipment/gallery/jcb-backhoes/4.jpg"
+  ],
+  "bobcats": [
+    "/images/equipment/gallery/bobcats/1.jpg",
+    "/images/equipment/gallery/bobcats/2.jpg",
+    "/images/equipment/gallery/bobcats/3.jpg",
+    "/images/equipment/gallery/bobcats/4.jpg"
+  ],
+  "scissor-lifts": [
+    "/images/equipment/gallery/scissor-lifts/1.jpg",
+    "/images/equipment/gallery/scissor-lifts/2.jpg",
+    "/images/equipment/gallery/scissor-lifts/3.jpg",
+    "/images/equipment/gallery/scissor-lifts/4.jpg"
+  ],
+  "man-lifts": [
+    "/images/equipment/gallery/man-lifts/1.jpg",
+    "/images/equipment/gallery/man-lifts/2.jpg",
+    "/images/equipment/gallery/man-lifts/3.jpg",
+    "/images/equipment/gallery/man-lifts/4.jpg"
+  ],
+  "tower-lights": [
+    "/images/equipment/gallery/tower-lights/1.jpg",
+    "/images/equipment/gallery/tower-lights/2.jpg"
+  ],
+  "telehandlers": [
+    "/images/equipment/gallery/telehandlers/1.jpg",
+    "/images/equipment/gallery/telehandlers/2.jpg",
+    "/images/equipment/gallery/telehandlers/3.jpg",
+    "/images/equipment/gallery/telehandlers/4.jpg"
+  ]
+}
