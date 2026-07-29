@@ -6,11 +6,10 @@ import { getSession } from "@/lib/auth";
 export default async function DashboardPage() {
   const session = await getSession();
 
-  const [newQuotes, totalQuotes, wonQuotes, equipment, projects, recent] =
+  const [newQuotes, totalQuotes, equipment, projects, recent] =
     await Promise.all([
       db.quoteRequest.count({ where: { status: "new" } }),
       db.quoteRequest.count(),
-      db.quoteRequest.count({ where: { status: "won" } }),
       db.equipment.count(),
       db.project.count(),
       db.quoteRequest.findMany({ orderBy: { createdAt: "desc" }, take: 5 }),

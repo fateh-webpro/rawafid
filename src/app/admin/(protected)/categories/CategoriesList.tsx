@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Pencil, Trash2, Eye, EyeOff, Package } from "lucide-react";
 import { toggleCategoryHidden, deleteCategory } from "./actions";
-import { cn } from "@/lib/utils";
 
 export type CatItem = {
   id: string;
