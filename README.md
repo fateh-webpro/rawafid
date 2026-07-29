@@ -11,7 +11,7 @@
 | الإطار | **Next.js 15** (App Router) + **React 19** |
 | اللغة | **TypeScript** |
 | التنسيق | **Tailwind CSS v4** |
-| قاعدة البيانات | **Prisma ORM** — SQLite (تطوير) → **PostgreSQL** (إنتاج) |
+| قاعدة البيانات | **Prisma ORM** — MySQL (تطوير وإنتاج) |
 | الثنائية اللغوية | **next-intl** (عربي RTL افتراضي + إنجليزي) |
 | الحركة | **Framer Motion** |
 | النماذج | **React Hook Form + Zod** |
@@ -43,7 +43,7 @@ rawafid-saba/
 
 ```bash
 npm install
-npx prisma db push        # ينشئ قاعدة البيانات
+npx prisma migrate dev --name init_mysql  # ينشئ أول Migration ويطبّقها محليًا
 node prisma/seed.mjs      # يزرع الفئات والمعدات ومستخدم المدير
 npm run dev               # http://localhost:3000
 ```
@@ -56,15 +56,15 @@ npm run dev               # http://localhost:3000
 
 ## 🌐 خطوات النشر (6 مهام للمطور)
 
-### 1) تحويل قاعدة البيانات إلى PostgreSQL
+### 1) اعتماد قاعدة البيانات على MySQL
 في `prisma/schema.prisma` غيّر مزوّد قاعدة البيانات:
 ```prisma
 datasource db {
-  provider = "postgresql"   // كان: sqlite
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 ```
-ثم في `.env` ضع رابط PostgreSQL (Neon / Supabase / VPS)، ونفّذ:
+ثم في `.env` ضع رابط MySQL المحلي أو رابط MySQL الإنتاجي، ونفّذ:
 ```bash
 npx prisma db push
 node prisma/seed.mjs
@@ -108,7 +108,7 @@ NEXT_PUBLIC_SITE_URL="https://النطاق-النهائي.com"
 ## 🔑 متغيّرات البيئة (`.env`) — ملخّص
 
 ```
-DATABASE_URL="..."                 # رابط PostgreSQL
+DATABASE_URL="..."                 # رابط MySQL
 AUTH_SECRET="..."                  # سلسلة عشوائية طويلة (لتوقيع الجلسات)
 NEXT_PUBLIC_SITE_URL="https://..." # النطاق النهائي
 SMTP_HOST / SMTP_PORT / SMTP_USER / SMTP_PASS / SMTP_FROM   # البريد
@@ -122,7 +122,7 @@ SMTP_HOST / SMTP_PORT / SMTP_USER / SMTP_PASS / SMTP_FROM   # البريد
 
 | الخيار | الوصف | الملاحظات |
 |---|---|---|
-| **Vercel + Neon** (موصى به) | نشر تلقائي + PostgreSQL مُدار | مجاني لهذا الحجم؛ يتطلب تخزين صور سحابي (Vercel Blob) |
+| **Hostinger / MySQL** (المسار المعتمد) | استضافة Node.js مع قاعدة MySQL | مناسب لمسار النشر الحالي؛ مع بقاء تخزين الصور المحلي أو نقله لاحقًا |
 | **Hostinger VPS** | كل شيء على خادم واحد بـ Docker | تحكّم كامل؛ صيانة أكثر؛ الرفع المحلي يعمل كما هو |
 
 الأمر الأساسي للبناء والتشغيل في الإنتاج:
