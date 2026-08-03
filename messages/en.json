@@ -1,8 +1,8 @@
 {
   "meta": {
-    "siteName": "Rawafid Saba Co. Ltd.",
-    "title": "Rawafid Saba Co. Ltd. | Heavy Equipment Rental in Riyadh, Saudi Arabia",
-    "description": "A Saudi company specialized in heavy equipment rental, lifting and handling equipment, and project support solutions. 273+ machines ready to work across Riyadh and the Kingdom."
+    "siteName": "Rawafid Saba Equipment",
+    "title": "Rawafid Saba Equipment | Heavy Equipment Rental in Riyadh and Saudi Arabia",
+    "description": "Rawafid Saba Equipment is a Saudi company specializing in heavy equipment, lifting equipment, and material handling rentals across Riyadh and the Kingdom."
   },
   "nav": {
     "home": "Home",
@@ -125,7 +125,7 @@
   },
   "aboutPage": {
     "eyebrow": "About Us",
-    "title": "Rawafid Saba Co. Ltd.",
+    "title": "Rawafid Saba Equipment",
     "subtitle": "A Saudi company specialized in heavy equipment rental, lifting and handling equipment, and project support solutions — serving Riyadh and the Kingdom since 2018.",
     "storyTitle": "Our Story",
     "storyBody": "Rawafid Saba began from a firm conviction: great projects aren't built by equipment alone, but by a partner who arrives on time, works safely, and lifts the project higher. From that conviction we grew — a fleet of 273+ machines, 732+ projects delivered, and the trust of 245+ clients across sectors.",
@@ -174,12 +174,30 @@
     "title": "Projects We're Proud Of",
     "subtitle": "Glimpses of our equipment at real sites across Riyadh and the Kingdom — structure lifting, construction work, and support for major projects.",
     "items": {
-      "p1": { "title": "Steel Structure Lifting", "tag": "Lifting" },
-      "p2": { "title": "Construction Works on Buildings", "tag": "Project Support" },
-      "p3": { "title": "Project Site Preparation", "tag": "Handling" },
-      "p4": { "title": "Height Works on Structures", "tag": "Safe Access" },
-      "p5": { "title": "Interior Works with Scissor Lift", "tag": "Safe Access" },
-      "p6": { "title": "Heavy Lifting at Open Site", "tag": "Lifting" }
+      "p1": {
+        "title": "Steel Structure Lifting",
+        "tag": "Lifting"
+      },
+      "p2": {
+        "title": "Construction Works on Buildings",
+        "tag": "Project Support"
+      },
+      "p3": {
+        "title": "Project Site Preparation",
+        "tag": "Handling"
+      },
+      "p4": {
+        "title": "Height Works on Structures",
+        "tag": "Safe Access"
+      },
+      "p5": {
+        "title": "Interior Works with Scissor Lift",
+        "tag": "Safe Access"
+      },
+      "p6": {
+        "title": "Heavy Lifting at Open Site",
+        "tag": "Lifting"
+      }
     },
     "note": "Projects shown are samples of our equipment's work. For more recent projects, get in touch."
   },

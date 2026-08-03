@@ -1,7 +1,7 @@
 /* بيانات الشركة المركزية — مصدر واحد للحقيقة */
 export const site = {
-  nameAr: "روافد سبأ المحدودة",
-  nameEn: "Rawafid Saba Co. Ltd.",
+  nameAr: "روافد سبأ للمعدات",
+  nameEn: "Rawafid Saba Equipment",
   phone: "+966538131822",
   phoneDisplay: "+966 53 813 1822",
   whatsapp: "966538131822",

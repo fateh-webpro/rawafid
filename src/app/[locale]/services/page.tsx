@@ -1,4 +1,9 @@
-import { buildAlternates, buildOpenGraph } from "@/lib/seo";
+import {
+  buildAlternates,
+  buildOpenGraph,
+  buildTwitterCard,
+  getSiteName,
+} from "@/lib/seo";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import {
   ClipboardCheck,
@@ -31,11 +36,15 @@ export async function generateMetadata({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "servicesPage" });
+  const siteName = getSiteName(locale);
+  const title = `${t("title")} | ${siteName}`;
+  const description = t("subtitle");
   return {
-    title: t("title"),
-    description: t("subtitle"),
+    title: { absolute: title },
+    description,
     alternates: buildAlternates(locale, "/services"),
-    openGraph: buildOpenGraph(locale, "/services", t("title"), t("subtitle")),
+    openGraph: buildOpenGraph(locale, "/services", title, description),
+    twitter: buildTwitterCard(title, description),
   };
 }
 

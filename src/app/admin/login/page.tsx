@@ -20,7 +20,7 @@ export default function LoginPage() {
               لوحة التحكم
             </h1>
             <p dir="ltr" className="latin-nums mt-1 text-xs tracking-[0.2em] text-navy-40">
-              RAWAFID SABA CO. LTD.
+              RAWAFID SABA EQUIPMENT
             </p>
           </div>
         </div>

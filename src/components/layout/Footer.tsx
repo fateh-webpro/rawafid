@@ -99,7 +99,7 @@ export async function Footer({ locale }: { locale: string }) {
             {locale === "ar" ? site.nameAr : site.nameEn} — {t("rights")}
           </p>
           <p dir="ltr" className="latin-nums tracking-[0.18em]">
-            RAWAFID SABA CO. LTD.
+            RAWAFID SABA EQUIPMENT
           </p>
         </div>
       </div>

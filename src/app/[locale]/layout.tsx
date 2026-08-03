@@ -9,7 +9,14 @@ import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFab } from "@/components/layout/WhatsAppFab";
 import { SiteConfigProvider } from "@/components/SiteConfig";
 import { getSettings } from "@/lib/settings";
-import { SITE_URL, buildAlternates, buildOpenGraph } from "@/lib/seo";
+import {
+  SITE_URL,
+  buildAlternates,
+  buildOpenGraph,
+  buildTwitterCard,
+  getSiteDescription,
+  getSiteName,
+} from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
 import "../globals.css";
 
@@ -46,22 +53,23 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "meta" });
+  const siteName = getSiteName(locale);
+  const title = t("title");
+  const description = t("description") || getSiteDescription(locale);
 
   return {
     metadataBase: new URL(SITE_URL),
+    applicationName: siteName,
     title: {
-      default: t("title"),
-      template: `%s | ${t("siteName")}`,
+      default: title,
+      template: `%s | ${siteName}`,
     },
-    description: t("description"),
+    description,
+    creator: siteName,
+    authors: [{ name: siteName }],
     alternates: buildAlternates(locale, ""),
-    openGraph: buildOpenGraph(locale, "", t("title"), t("description")),
-    twitter: {
-      card: "summary_large_image",
-      title: t("title"),
-      description: t("description"),
-      images: ["/images/equipment/hero.jpg"],
-    },
+    openGraph: buildOpenGraph(locale, "", title, description),
+    twitter: buildTwitterCard(title, description),
   };
 }
 

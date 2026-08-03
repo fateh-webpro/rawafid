@@ -8,7 +8,12 @@ import type { CatalogItem, CardLabels } from "@/components/equipment/EquipmentCa
 import { getCategoryWithUnits } from "@/lib/data/equipment-query";
 import { parseSpecs } from "@/lib/specs";
 import { whatsappLink } from "@/lib/site";
-import { buildAlternates, buildOpenGraph } from "@/lib/seo";
+import {
+  buildAlternates,
+  buildOpenGraph,
+  buildTwitterCard,
+  getSiteName,
+} from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
@@ -19,17 +24,38 @@ export async function generateMetadata({
 }) {
   const { locale, category } = await params;
   const cat = await getCategoryWithUnits(category);
-  if (!cat) return { title: "المعدات" };
-  const name = locale === "ar" ? cat.nameAr : cat.nameEn;
+  const siteName = getSiteName(locale);
   const t = await getTranslations({ locale, namespace: "equipmentPage" });
-  const title = `${t("categoryTitlePrefix")} ${name}`;
-  const description = `${title} — ${t("subtitle")}`;
+
+  if (!cat) {
+    const title = locale === "ar" ? `المعدات | ${siteName}` : `Equipment | ${siteName}`;
+    const description = t("subtitle");
+    return {
+      title: { absolute: title },
+      description,
+      alternates: buildAlternates(locale, "/equipment"),
+      openGraph: buildOpenGraph(locale, "/equipment", title, description),
+      twitter: buildTwitterCard(title, description),
+    };
+  }
+
+  const name = locale === "ar" ? cat.nameAr : cat.nameEn;
+  const opLabel =
+    cat.operator === "both" ? t("opBoth") : cat.operator === "self" ? t("opSelf") : t("opOperated");
+  const title = `${name} | ${siteName}`;
+  const description =
+    locale === "ar"
+      ? `تأجير ${name} من ${siteName}. ${cat.equipment.length} ${t("unitsShort")} متاحة — ${opLabel}.`
+      : `Rent ${name} from ${siteName}. ${cat.equipment.length} ${t("unitsShort")} available — ${opLabel}.`;
   const path = `/equipment/${category}`;
+  const image = cat.image || cat.equipment.find((unit) => unit.image)?.image || "/og-default.png";
+
   return {
-    title,
+    title: { absolute: title },
     description,
     alternates: buildAlternates(locale, path),
-    openGraph: buildOpenGraph(locale, path, title, description, cat.image || undefined),
+    openGraph: buildOpenGraph(locale, path, title, description, image),
+    twitter: buildTwitterCard(title, description, image),
   };
 }
 

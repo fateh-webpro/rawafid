@@ -56,7 +56,7 @@ export function Hero({ image }: { image: string }) {
         initial={reduce ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 2, delay: 0.8 }}
-        className="absolute -top-32 -end-24 h-[520px] w-auto text-white opacity-[0.05]"
+        className="absolute -top-10 -end-10 h-[220px] w-auto text-white opacity-[0.035] sm:-top-14 sm:-end-12 sm:h-[280px] sm:opacity-[0.04] md:-top-20 md:-end-16 md:h-[360px] md:opacity-[0.045] lg:-top-32 lg:-end-24 lg:h-[520px] lg:opacity-[0.05]"
         aria-hidden
       >
         <LogoMark className="h-full w-auto" />

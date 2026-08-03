@@ -44,6 +44,7 @@ export async function saveContent(
 
   // تحديث كل صفحات الموقع
   revalidatePath("/", "layout");
+  revalidatePath("/en", "layout");
 
   return { success: "تم حفظ النصوص بنجاح — ستظهر على الموقع فوراً." };
 }

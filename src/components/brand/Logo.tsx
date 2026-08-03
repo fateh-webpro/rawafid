@@ -26,7 +26,7 @@ export function Logo({
             onDark ? "text-white" : "text-navy"
           )}
         >
-          {isAr ? "روافد سبأ المحدودة" : "RAWAFID SABA"}
+          {isAr ? "روافد سبأ للمعدات" : "RAWAFID SABA EQUIPMENT"}
         </span>
         <span
           dir="ltr"
@@ -35,7 +35,7 @@ export function Logo({
             onDark ? "text-navy-40" : "text-gray"
           )}
         >
-          {isAr ? "RAWAFID SABA CO. LTD." : "CO. LTD. — SINCE 2018"}
+          {isAr ? "RAWAFID SABA EQUIPMENT" : "HEAVY EQUIPMENT RENTAL — SINCE 2018"}
         </span>
       </span>
     </span>

@@ -7,6 +7,11 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  experimental: {
+    serverActions: {
+      allowedOrigins: ["rawafidequipment.com", "www.rawafidequipment.com"],
+    },
+  },
 };
 
 export default withNextIntl(nextConfig);
