@@ -1,9 +1,8 @@
 "use client";
 
-import { useActionState, useMemo, useState } from "react";
-import { useFormStatus } from "react-dom";
+import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Save, ChevronDown, Search } from "lucide-react";
-import { saveContentSection, type ContentState } from "./actions";
 import { cn } from "@/lib/utils";
 
 export type ContentRow = {
@@ -13,26 +12,12 @@ export type ContentRow = {
   en: string;
 };
 
-const SECTION_NAMES: Record<string, string> = {
-  meta: "بيانات SEO (عنوان ووصف الموقع)",
-  nav: "القائمة العلوية",
-  hero: "الهيدر (الصفحة الرئيسية)",
-  stats: "مسمّيات الأرقام",
-  categories: "قسم الفئات",
-  services: "قسم الخدمات",
-  why: "قسم «لماذا نحن»",
-  cta: "دعوة التواصل",
-  common: "نصوص عامة",
-  footer: "التذييل",
-  equipmentPage: "صفحة المعدات",
-  contactPage: "صفحة التواصل / طلب عرض السعر",
-  aboutPage: "صفحة من نحن",
-  servicesPage: "صفحة الخدمات",
-  projectsPage: "صفحة المشاريع",
-  blogPage: "صفحة المدونة",
-  downloadsPage: "صفحة مركز التحميل",
-  emptyPage: "رسائل الصفحات الفارغة",
+type ContentState = {
+  success?: string;
+  error?: string;
 };
+
+const SECTION_NAMES: Record<string, string> = {   meta: "بيانات SEO (عنوان ووصف الموقع)",   nav: "القائمة العلوية",   hero: "الهيدر (الصفحة الرئيسية)",   stats: "مسمّيات الأرقام",   categories: "قسم الفئات",   services: "قسم الخدمات",   why: "قسم «لماذا نحن»",   cta: "دعوة التواصل",   common: "نصوص عامة",   footer: "التذييل",   equipmentPage: "صفحة المعدات",   contactPage: "صفحة التواصل / طلب عرض السعر",   aboutPage: "صفحة من نحن",   servicesPage: "صفحة الخدمات",   projectsPage: "صفحة المشاريع",   blogPage: "صفحة المدونة",   downloadsPage: "صفحة مركز التحميل",   emptyPage: "رسائل الصفحات الفارغة", };
 
 export function ContentEditor({ rows }: { rows: ContentRow[] }) {
   const [query, setQuery] = useState("");
@@ -41,16 +26,16 @@ export function ContentEditor({ rows }: { rows: ContentRow[] }) {
   const grouped = useMemo(() => {
     const q = query.trim().toLowerCase();
     const map: Record<string, ContentRow[]> = {};
-    for (const r of rows) {
+    for (const row of rows) {
       if (
         q &&
-        !r.ar.toLowerCase().includes(q) &&
-        !r.en.toLowerCase().includes(q) &&
-        !r.key.toLowerCase().includes(q)
+        !row.ar.toLowerCase().includes(q) &&
+        !row.en.toLowerCase().includes(q) &&
+        !row.key.toLowerCase().includes(q)
       ) {
         continue;
       }
-      (map[r.section] ??= []).push(r);
+      (map[row.section] ??= []).push(row);
     }
     return map;
   }, [rows, query]);
@@ -70,7 +55,7 @@ export function ContentEditor({ rows }: { rows: ContentRow[] }) {
           <input
             type="search"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(event) => setQuery(event.target.value)}
             placeholder="ابحث في النصوص…"
             className="w-full rounded-lg border border-navy-20 bg-white py-2.5 ps-10 pe-4 text-navy outline-none focus:border-gold"
           />
@@ -121,10 +106,76 @@ function ContentSectionForm({
   section: string;
   rows: ContentRow[];
 }) {
-  const [state, formAction] = useActionState(saveContentSection, {} as ContentState);
+  const router = useRouter();
+  const [isSaving, setIsSaving] = useState(false);
+  const [state, setState] = useState<ContentState>({});
+
+  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setIsSaving(true);
+    setState({});
+
+    const formData = new FormData(event.currentTarget);
+    const rawSection = formData.get("section");
+    const values: Record<string, string> = {};
+
+    for (const [key, value] of formData.entries()) {
+      if (key === "section") continue;
+      if (typeof value !== "string") continue;
+      values[key] = value;
+    }
+
+    try {
+      const response = await fetch("/api/admin/content", {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          section: typeof rawSection === "string" ? rawSection : "",
+          values,
+        }),
+      });
+
+      const responseType = response.headers.get("content-type") ?? "";
+      const rawBody = await response.text();
+      const parsed = responseType.includes("application/json")
+        ? tryParseJson(rawBody)
+        : null;
+
+      if (response.status === 401) {
+        setState({ error: "Session expired. Please sign in again." });
+        router.push("/admin/login");
+        return;
+      }
+
+      if (!response.ok) {
+        if (!parsed) {
+          setState({ error: "Save request was rejected by the server with status " + response.status + "." });
+          return;
+        }
+
+        setState({ error: parsed.message ?? "Failed to save this section. Please try again." });
+        return;
+      }
+
+      if (!parsed) {
+        setState({ error: "The server responded with an unexpected format." });
+        return;
+      }
+
+      setState({ success: parsed.message ?? "Section saved successfully." });
+      router.refresh();
+    } catch {
+      setState({ error: "Failed to save this section. Please try again." });
+    } finally {
+      setIsSaving(false);
+    }
+  }
 
   return (
-    <form action={formAction}>
+    <form onSubmit={onSubmit}>
       <input type="hidden" name="section" value={section} />
 
       <div className="border-t border-navy-20/40 divide-y divide-navy-20/30">
@@ -136,11 +187,11 @@ function ContentSectionForm({
             <div className="grid gap-3 sm:grid-cols-2">
               <label className="block">
                 <span className="mb-1 block text-xs font-medium text-navy-60">عربي</span>
-                <TextArea name={`ar::${row.key}`} defaultValue={row.ar} />
+                <TextArea name={"ar::" + row.key} defaultValue={row.ar} />
               </label>
               <label className="block">
                 <span className="mb-1 block text-xs font-medium text-navy-60">English</span>
-                <TextArea name={`en::${row.key}`} defaultValue={row.en} ltr />
+                <TextArea name={"en::" + row.key} defaultValue={row.en} ltr />
               </label>
             </div>
           </div>
@@ -148,26 +199,18 @@ function ContentSectionForm({
       </div>
 
       <div className="flex flex-wrap items-center gap-3 border-t border-navy-20/40 px-5 py-4">
-        <SectionSubmitButton />
+        <button
+          type="submit"
+          disabled={isSaving}
+          className="inline-flex items-center gap-2 rounded-lg bg-gold px-5 py-2.5 font-heading font-bold text-navy transition-colors hover:bg-gold-80 disabled:opacity-60"
+        >
+          <Save size={17} />
+          {isSaving ? "جارٍ الحفظ…" : "حفظ القسم"}
+        </button>
         {state.success ? <span className="text-sm text-green-700">{state.success}</span> : null}
         {state.error ? <span className="text-sm text-red-600">{state.error}</span> : null}
       </div>
     </form>
-  );
-}
-
-function SectionSubmitButton() {
-  const { pending } = useFormStatus();
-
-  return (
-    <button
-      type="submit"
-      disabled={pending}
-      className="inline-flex items-center gap-2 rounded-lg bg-gold px-5 py-2.5 font-heading font-bold text-navy transition-colors hover:bg-gold-80 disabled:opacity-60"
-    >
-      <Save size={17} />
-      {pending ? "جارٍ الحفظ…" : "حفظ القسم"}
-    </button>
   );
 }
 
@@ -185,4 +228,12 @@ function TextArea({ name, defaultValue, ltr }: { name: string; defaultValue: str
       )}
     />
   );
+}
+
+function tryParseJson(value: string): { success?: boolean; message?: string } | null {
+  try {
+    return JSON.parse(value) as { success?: boolean; message?: string };
+  } catch {
+    return null;
+  }
 }
