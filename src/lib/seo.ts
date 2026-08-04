@@ -83,6 +83,8 @@ export function buildOpenGraph(
   description: string,
   image?: string
 ): Metadata["openGraph"] {
+  const imageUrl = absoluteUrl(image || "/og-default.png");
+
   return {
     type: "website",
     siteName: getSiteName(locale),
@@ -91,7 +93,16 @@ export function buildOpenGraph(
     url: localeUrl(locale, path),
     title,
     description,
-    images: [{ url: absoluteUrl(image || "/og-default.png"), width: 1200, height: 630 }],
+    images: [
+      {
+        url: imageUrl,
+        secureUrl: imageUrl,
+        width: 1200,
+        height: 630,
+        type: "image/png",
+        alt: getSiteName(locale),
+      },
+    ],
   };
 }
 
@@ -100,10 +111,12 @@ export function buildTwitterCard(
   description: string,
   image?: string
 ): Metadata["twitter"] {
+  const imageUrl = absoluteUrl(image || "/og-default.png");
+
   return {
     card: "summary_large_image",
     title,
     description,
-    images: [absoluteUrl(image || "/og-default.png")],
+    images: [imageUrl],
   };
 }
