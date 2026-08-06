@@ -28,14 +28,14 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "equipmentPage" });
 
   if (!cat) {
-    const title = locale === "ar" ? `المعدات | ${siteName}` : `Equipment | ${siteName}`;
+    const title = locale === "ar" ? `ط§ظ„ظ…ط¹ط¯ط§طھ | ${siteName}` : `Equipment | ${siteName}`;
     const description = t("subtitle");
     return {
       title: { absolute: title },
       description,
       alternates: buildAlternates(locale, "/equipment"),
       openGraph: buildOpenGraph(locale, "/equipment", title, description),
-      twitter: buildTwitterCard(title, description),
+      twitter: buildTwitterCard(locale, title, description),
     };
   }
 
@@ -45,17 +45,17 @@ export async function generateMetadata({
   const title = `${name} | ${siteName}`;
   const description =
     locale === "ar"
-      ? `تأجير ${name} من ${siteName}. ${cat.equipment.length} ${t("unitsShort")} متاحة — ${opLabel}.`
-      : `Rent ${name} from ${siteName}. ${cat.equipment.length} ${t("unitsShort")} available — ${opLabel}.`;
+      ? `طھط£ط¬ظٹط± ${name} ظ…ظ† ${siteName}. ${cat.equipment.length} ${t("unitsShort")} ظ…طھط§ط­ط© â€” ${opLabel}.`
+      : `Rent ${name} from ${siteName}. ${cat.equipment.length} ${t("unitsShort")} available â€” ${opLabel}.`;
   const path = `/equipment/${category}`;
-  const image = cat.image || cat.equipment.find((unit) => unit.image)?.image || "/og-default.png";
+  const image = cat.image || cat.equipment.find((unit) => unit.image)?.image;
 
   return {
     title: { absolute: title },
     description,
     alternates: buildAlternates(locale, path),
     openGraph: buildOpenGraph(locale, path, title, description, image),
-    twitter: buildTwitterCard(title, description, image),
+    twitter: buildTwitterCard(locale, title, description, image),
   };
 }
 
@@ -108,7 +108,7 @@ export default async function CategoryPage({
       <PageHeader
         eyebrow={t("eyebrow")}
         title={name}
-        subtitle={`${cat.equipment.length} ${t("unitsShort")} — ${opLabel}`}
+        subtitle={`${cat.equipment.length} ${t("unitsShort")} â€” ${opLabel}`}
       />
 
       <section className="bg-cream px-5 py-14 lg:px-8">

@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 
 const FALLBACK_SITE_URL = "https://rawafidequipment.com";
 const LOCAL_HOSTS = new Set(["localhost", "127.0.0.1", "0.0.0.0"]);
+const DEFAULT_OG_IMAGES = {
+  ar: "/og-ar.png",
+  en: "/og-en.png",
+} as const;
 
 const SITE_NAMES = {
   ar: "روافد سبأ للمعدات",
@@ -25,7 +29,6 @@ function normalizeSiteUrl(raw?: string) {
   }
 }
 
-/** رابط الموقع الأساسي — يُضبط عبر NEXT_PUBLIC_SITE_URL عند النشر، مع fallback آمن للإنتاج */
 export const SITE_URL = normalizeSiteUrl(process.env.NEXT_PUBLIC_SITE_URL);
 
 export function getSiteName(locale: string) {
@@ -34,6 +37,10 @@ export function getSiteName(locale: string) {
 
 export function getSiteDescription(locale: string) {
   return locale === "ar" ? SITE_DESCRIPTIONS.ar : SITE_DESCRIPTIONS.en;
+}
+
+export function getDefaultOgImagePath(locale: string) {
+  return locale === "ar" ? DEFAULT_OG_IMAGES.ar : DEFAULT_OG_IMAGES.en;
 }
 
 export function absoluteUrl(value?: string | null) {
@@ -54,13 +61,16 @@ export function absoluteUrl(value?: string | null) {
   return new URL(value.startsWith("/") ? value : `/${value}`, SITE_URL).toString();
 }
 
-/** رابط مطلق لمسار حسب اللغة (العربية بلا بادئة، الإنجليزية تحت /en) */
 export function localeUrl(locale: string, path = ""): string {
   const p = path === "/" ? "" : path;
-  return locale === "ar" ? `${SITE_URL}${p}` : `${SITE_URL}/en${p}`;
+
+  if (locale === "ar") {
+    return p ? `${SITE_URL}${p}` : `${SITE_URL}/`;
+  }
+
+  return p ? `${SITE_URL}/en${p}` : `${SITE_URL}/en`;
 }
 
-/** canonical ذاتي + بدائل اللغات (hreflang) لصفحة معيّنة */
 export function buildAlternates(
   locale: string,
   path = ""
@@ -75,7 +85,24 @@ export function buildAlternates(
   };
 }
 
-/** كائن Open Graph أساسي لصفحة */
+function inferImageType(imageUrl: string) {
+  const pathname = new URL(imageUrl).pathname.toLowerCase();
+
+  if (pathname.endsWith(".png")) return "image/png";
+  if (pathname.endsWith(".jpg") || pathname.endsWith(".jpeg")) return "image/jpeg";
+  if (pathname.endsWith(".webp")) return "image/webp";
+  return undefined;
+}
+
+function isGeneratedOgImage(imageUrl: string) {
+  const pathname = new URL(imageUrl).pathname.toLowerCase();
+  return (
+    pathname === DEFAULT_OG_IMAGES.ar ||
+    pathname === DEFAULT_OG_IMAGES.en ||
+    pathname === "/og-default.png"
+  );
+}
+
 export function buildOpenGraph(
   locale: string,
   path: string,
@@ -83,7 +110,8 @@ export function buildOpenGraph(
   description: string,
   image?: string
 ): Metadata["openGraph"] {
-  const imageUrl = absoluteUrl(image || "/og-default.png");
+  const imageUrl = absoluteUrl(image || getDefaultOgImagePath(locale));
+  const imageType = inferImageType(imageUrl);
 
   return {
     type: "website",
@@ -97,21 +125,21 @@ export function buildOpenGraph(
       {
         url: imageUrl,
         secureUrl: imageUrl,
-        width: 1200,
-        height: 630,
-        type: "image/png",
-        alt: getSiteName(locale),
+        ...(isGeneratedOgImage(imageUrl) ? { width: 1200, height: 630 } : {}),
+        ...(imageType ? { type: imageType } : {}),
+        alt: title,
       },
     ],
   };
 }
 
 export function buildTwitterCard(
+  locale: string,
   title: string,
   description: string,
   image?: string
 ): Metadata["twitter"] {
-  const imageUrl = absoluteUrl(image || "/og-default.png");
+  const imageUrl = absoluteUrl(image || getDefaultOgImagePath(locale));
 
   return {
     card: "summary_large_image",

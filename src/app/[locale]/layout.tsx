@@ -20,8 +20,8 @@ import {
 import { JsonLd } from "@/components/JsonLd";
 import "../globals.css";
 
-/* الخطوط الرسمية من دليل الهوية:
-   Almarai للعناوين — Tajawal للنصوص — Montserrat للاتيني والأرقام */
+/* ط§ظ„ط®ط·ظˆط· ط§ظ„ط±ط³ظ…ظٹط© ظ…ظ† ط¯ظ„ظٹظ„ ط§ظ„ظ‡ظˆظٹط©:
+   Almarai ظ„ظ„ط¹ظ†ط§ظˆظٹظ† â€” Tajawal ظ„ظ„ظ†طµظˆطµ â€” Montserrat ظ„ظ„ط§طھظٹظ†ظٹ ظˆط§ظ„ط£ط±ظ‚ط§ظ… */
 const almarai = Almarai({
   subsets: ["arabic"],
   weight: ["300", "400", "700", "800"],
@@ -69,7 +69,7 @@ export async function generateMetadata({
     authors: [{ name: siteName }],
     alternates: buildAlternates(locale, ""),
     openGraph: buildOpenGraph(locale, "", title, description),
-    twitter: buildTwitterCard(title, description),
+    twitter: buildTwitterCard(locale, title, description),
   };
 }
 

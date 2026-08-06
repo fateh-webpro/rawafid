@@ -1,9 +1,15 @@
-import { absoluteUrl, getSiteDescription, getSiteName, SITE_URL, localeUrl } from "@/lib/seo";
+import {
+  absoluteUrl,
+  getDefaultOgImagePath,
+  getSiteDescription,
+  getSiteName,
+  SITE_URL,
+  localeUrl,
+} from "@/lib/seo";
 import { activeSocials, type Settings } from "@/lib/settings";
 
 /**
- * بيانات منظّمة (JSON-LD) للنشاط المحلي — تساعد جوجل على فهم الشركة
- * وإظهارها في نتائج البحث المحلية.
+ * بيانات منظمة (JSON-LD) للنشاط المحلي.
  */
 export function JsonLd({
   locale,
@@ -24,7 +30,7 @@ export function JsonLd({
     url: localeUrl(locale, ""),
     telephone: settings["contact.phone"],
     ...(settings["contact.email"] ? { email: settings["contact.email"] } : {}),
-    image: absoluteUrl("/og-default.png"),
+    image: absoluteUrl(getDefaultOgImagePath(locale)),
     description: getSiteDescription(locale),
     address: {
       "@type": "PostalAddress",

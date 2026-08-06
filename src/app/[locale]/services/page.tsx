@@ -44,7 +44,7 @@ export async function generateMetadata({
     description,
     alternates: buildAlternates(locale, "/services"),
     openGraph: buildOpenGraph(locale, "/services", title, description),
-    twitter: buildTwitterCard(title, description),
+    twitter: buildTwitterCard(locale, title, description),
   };
 }
 
