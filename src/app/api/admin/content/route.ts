@@ -150,7 +150,7 @@ export async function POST(request: Request) {
     );
   } catch {
     return NextResponse.json(
-      { success: false, message: "Failed to save this section." },
+      { success: false, message: "فشل حفظ التعديلات." },
       { status: 500 }
     );
   }
@@ -158,5 +158,5 @@ export async function POST(request: Request) {
   revalidatePath("/", "layout");
   revalidatePath("/en", "layout");
 
-  return NextResponse.json({ success: true, message: "Section saved successfully." });
+  return NextResponse.json({ success: true, message: "تم حفظ التعديلات بنجاح." });
 }
