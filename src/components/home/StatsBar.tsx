@@ -9,7 +9,7 @@ export async function StatsBar() {
   const s = await getSettings();
 
   const items = [
-    { label: t("founded"), value: num(s, "stats.foundedYear", 2018), suffix: "" },
+    { label: t("founded"), value: num(s, "stats.foundedYear", 10), suffix: "+" },
     { label: t("equipment"), value: num(s, "stats.equipment", 273), suffix: "+" },
     { label: t("projects"), value: num(s, "stats.projects", 732), suffix: "+" },
     { label: t("clients"), value: num(s, "stats.clients", 245), suffix: "+" },
