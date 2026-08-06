@@ -3,8 +3,14 @@ import type { Metadata } from "next";
 const FALLBACK_SITE_URL = "https://rawafidequipment.com";
 const LOCAL_HOSTS = new Set(["localhost", "127.0.0.1", "0.0.0.0"]);
 const DEFAULT_OG_IMAGES = {
-  ar: "/og-ar.png",
-  en: "/og-en.png",
+  ar: "/og-ar-v2.png",
+  en: "/og-en-v2.png",
+} as const;
+
+const OG_IMAGE_DIMENSIONS = {
+  "/og-ar-v2.png": { width: 896, height: 896 },
+  "/og-en-v2.png": { width: 896, height: 896 },
+  "/og-default.png": { width: 1200, height: 630 },
 } as const;
 
 const SITE_NAMES = {
@@ -94,13 +100,9 @@ function inferImageType(imageUrl: string) {
   return undefined;
 }
 
-function isGeneratedOgImage(imageUrl: string) {
-  const pathname = new URL(imageUrl).pathname.toLowerCase();
-  return (
-    pathname === DEFAULT_OG_IMAGES.ar ||
-    pathname === DEFAULT_OG_IMAGES.en ||
-    pathname === "/og-default.png"
-  );
+function getOgImageDimensions(imageUrl: string) {
+  const pathname = new URL(imageUrl).pathname.toLowerCase() as keyof typeof OG_IMAGE_DIMENSIONS;
+  return OG_IMAGE_DIMENSIONS[pathname];
 }
 
 export function buildOpenGraph(
@@ -112,6 +114,7 @@ export function buildOpenGraph(
 ): Metadata["openGraph"] {
   const imageUrl = absoluteUrl(image || getDefaultOgImagePath(locale));
   const imageType = inferImageType(imageUrl);
+  const imageDimensions = getOgImageDimensions(imageUrl);
 
   return {
     type: "website",
@@ -125,7 +128,7 @@ export function buildOpenGraph(
       {
         url: imageUrl,
         secureUrl: imageUrl,
-        ...(isGeneratedOgImage(imageUrl) ? { width: 1200, height: 630 } : {}),
+        ...(imageDimensions || {}),
         ...(imageType ? { type: imageType } : {}),
         alt: title,
       },
