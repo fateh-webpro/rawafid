@@ -1,6 +1,6 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Image from "next/image";
-import { buildAlternates, buildOpenGraph } from "@/lib/seo";
+import { buildAlternates, buildOpenGraph, buildTwitterCard } from "@/lib/seo";
 import {
   Award,
   HeartHandshake,
@@ -50,6 +50,7 @@ export async function generateMetadata({
     description: t("subtitle"),
     alternates: buildAlternates(locale, "/about"),
     openGraph: buildOpenGraph(locale, "/about", title, t("subtitle")),
+    twitter: buildTwitterCard(locale, title, t("subtitle")),
   };
 }
 

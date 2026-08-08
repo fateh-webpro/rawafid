@@ -6,7 +6,7 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { equipmentIconMap } from "@/components/icons/equipment";
 import { getVisibleCategoriesWithCounts } from "@/lib/data/equipment-query";
-import { buildAlternates, buildOpenGraph } from "@/lib/seo";
+import { buildAlternates, buildOpenGraph, buildTwitterCard } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
@@ -22,6 +22,7 @@ export async function generateMetadata({
     description: t("subtitle"),
     alternates: buildAlternates(locale, "/equipment"),
     openGraph: buildOpenGraph(locale, "/equipment", t("title"), t("subtitle")),
+    twitter: buildTwitterCard(locale, t("title"), t("subtitle")),
   };
 }
 

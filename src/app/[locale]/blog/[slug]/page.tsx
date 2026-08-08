@@ -5,7 +5,7 @@ import { ArrowRight, ArrowLeft } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Reveal } from "@/components/motion/Reveal";
 import { getPostBySlug } from "@/lib/data/equipment-query";
-import { buildAlternates, buildOpenGraph } from "@/lib/seo";
+import { buildAlternates, buildOpenGraph, buildTwitterCard } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
@@ -29,6 +29,7 @@ export async function generateMetadata({
       ...buildOpenGraph(locale, path, title, description, post.cover || undefined),
       type: "article",
     },
+    twitter: buildTwitterCard(locale, title, description, post.cover || undefined),
   };
 }
 

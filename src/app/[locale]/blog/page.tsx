@@ -1,4 +1,4 @@
-import { buildAlternates, buildOpenGraph } from "@/lib/seo";
+import { buildAlternates, buildOpenGraph, buildTwitterCard } from "@/lib/seo";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Image from "next/image";
 import { Newspaper, ArrowLeft, ArrowRight } from "lucide-react";
@@ -22,6 +22,7 @@ export async function generateMetadata({
     description: t("subtitle"),
     alternates: buildAlternates(locale, "/blog"),
     openGraph: buildOpenGraph(locale, "/blog", t("title"), t("subtitle")),
+    twitter: buildTwitterCard(locale, t("title"), t("subtitle")),
   };
 }
 

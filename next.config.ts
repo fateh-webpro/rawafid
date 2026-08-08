@@ -22,6 +22,16 @@ const nextConfig: NextConfig = {
       allowedOrigins: ["rawafidequipment.com", "www.rawafidequipment.com"],
     },
   },
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.rawafidequipment.com" }],
+        destination: "https://rawafidequipment.com/:path*",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default withNextIntl(nextConfig);

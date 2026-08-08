@@ -1,4 +1,4 @@
-import { buildAlternates, buildOpenGraph } from "@/lib/seo";
+import { buildAlternates, buildOpenGraph, buildTwitterCard } from "@/lib/seo";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { ContactMethods } from "@/components/contact/ContactMethods";
@@ -21,6 +21,7 @@ export async function generateMetadata({
     description: t("subtitle"),
     alternates: buildAlternates(locale, "/contact"),
     openGraph: buildOpenGraph(locale, "/contact", t("title"), t("subtitle")),
+    twitter: buildTwitterCard(locale, t("title"), t("subtitle")),
   };
 }
 
