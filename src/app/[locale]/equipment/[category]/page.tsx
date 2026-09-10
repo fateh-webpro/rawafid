@@ -14,6 +14,7 @@ import {
   buildTwitterCard,
   getSiteName,
 } from "@/lib/seo";
+import { BreadcrumbJsonLd } from "@/components/JsonLd";
 
 export const dynamic = "force-dynamic";
 
@@ -73,6 +74,7 @@ export default async function CategoryPage({
 
   const t = await getTranslations("equipmentPage");
   const tcommon = await getTranslations("common");
+  const tn = await getTranslations("nav");
   const Back = isAr ? ArrowRight : ArrowLeft;
 
   const name = isAr ? cat.nameAr : cat.nameEn;
@@ -105,6 +107,13 @@ export default async function CategoryPage({
 
   return (
     <main>
+      <BreadcrumbJsonLd
+        locale={locale}
+        items={[
+          { name: tn("equipment"), path: "/equipment" },
+          { name, path: `/equipment/${category}` },
+        ]}
+      />
       <PageHeader
         eyebrow={t("eyebrow")}
         title={name}

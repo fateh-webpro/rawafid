@@ -6,6 +6,7 @@ import { QuoteForm, type QuoteFormLabels } from "@/components/contact/QuoteForm"
 import { Reveal } from "@/components/motion/Reveal";
 import { getCategories } from "@/lib/data/equipment-query";
 import { site } from "@/lib/site";
+import { BreadcrumbJsonLd } from "@/components/JsonLd";
 
 export const dynamic = "force-dynamic";
 
@@ -34,6 +35,7 @@ export default async function ContactPage({
   setRequestLocale(locale);
 
   const t = await getTranslations("contactPage");
+  const tn = await getTranslations("nav");
   const isAr = locale === "ar";
   const dbCategories = await getCategories();
 
@@ -78,6 +80,7 @@ export default async function ContactPage({
 
   return (
     <main>
+      <BreadcrumbJsonLd locale={locale} items={[{ name: tn("contact"), path: "/contact" }]} />
       <PageHeader eyebrow={t("eyebrow")} title={t("title")} subtitle={t("subtitle")} />
       <section className="bg-cream px-5 py-16 lg:px-8 lg:py-20">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_1.35fr]">

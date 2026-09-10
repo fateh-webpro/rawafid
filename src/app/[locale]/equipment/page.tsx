@@ -7,6 +7,7 @@ import { Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { equipmentIconMap } from "@/components/icons/equipment";
 import { getVisibleCategoriesWithCounts } from "@/lib/data/equipment-query";
 import { buildAlternates, buildOpenGraph, buildTwitterCard } from "@/lib/seo";
+import { BreadcrumbJsonLd } from "@/components/JsonLd";
 
 export const dynamic = "force-dynamic";
 
@@ -35,12 +36,14 @@ export default async function EquipmentPage({
   setRequestLocale(locale);
   const isAr = locale === "ar";
   const t = await getTranslations("equipmentPage");
+  const tn = await getTranslations("nav");
 
   const categories = await getVisibleCategoriesWithCounts();
   const Arrow = isAr ? ArrowLeft : ArrowRight;
 
   return (
     <main>
+      <BreadcrumbJsonLd locale={locale} items={[{ name: tn("equipment"), path: "/equipment" }]} />
       <PageHeader eyebrow={t("eyebrow")} title={t("title")} subtitle={t("subtitle")} />
 
       {/* شريط تبويبات الفئات — وصول سريع لكل فئة */}

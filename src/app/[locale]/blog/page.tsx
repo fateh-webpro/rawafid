@@ -7,6 +7,7 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { EmptyState } from "@/components/layout/EmptyState";
 import { Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { getPublishedPosts } from "@/lib/data/equipment-query";
+import { BreadcrumbJsonLd } from "@/components/JsonLd";
 
 export const dynamic = "force-dynamic";
 
@@ -36,23 +37,28 @@ export default async function BlogPage({
   const isAr = locale === "ar";
   const t = await getTranslations("blogPage");
   const te = await getTranslations("emptyPage");
+  const tn = await getTranslations("nav");
 
   const posts = await getPublishedPosts();
   const Arrow = isAr ? ArrowLeft : ArrowRight;
 
   if (posts.length === 0) {
     return (
-      <EmptyState
-        eyebrow={te("blogEyebrow")}
-        title={te("blogTitle")}
-        body={te("blogBody")}
-        icon={<Newspaper size={34} strokeWidth={1.7} />}
-      />
+      <>
+        <BreadcrumbJsonLd locale={locale} items={[{ name: tn("blog"), path: "/blog" }]} />
+        <EmptyState
+          eyebrow={te("blogEyebrow")}
+          title={te("blogTitle")}
+          body={te("blogBody")}
+          icon={<Newspaper size={34} strokeWidth={1.7} />}
+        />
+      </>
     );
   }
 
   return (
     <main>
+      <BreadcrumbJsonLd locale={locale} items={[{ name: tn("blog"), path: "/blog" }]} />
       <PageHeader eyebrow={t("eyebrow")} title={t("title")} subtitle={t("subtitle")} />
       <section className="bg-cream py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">

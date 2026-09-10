@@ -7,6 +7,7 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { Reveal } from "@/components/motion/Reveal";
 import { buttonClasses } from "@/components/ui/Button";
 import { getSettings } from "@/lib/settings";
+import { BreadcrumbJsonLd } from "@/components/JsonLd";
 
 export const dynamic = "force-dynamic";
 
@@ -35,6 +36,7 @@ export default async function ActivitiesPage({
   setRequestLocale(locale);
   const isAr = locale === "ar";
   const t = await getTranslations("activitiesPage");
+  const tn = await getTranslations("nav");
 
   const s = await getSettings();
   const aluminumUrl = s["aluminum.url"]?.trim();
@@ -43,6 +45,7 @@ export default async function ActivitiesPage({
 
   return (
     <main>
+      <BreadcrumbJsonLd locale={locale} items={[{ name: tn("activities"), path: "/activities" }]} />
       <PageHeader eyebrow={t("eyebrow")} title={t("title")} subtitle={t("subtitle")} />
 
       <section className="bg-cream py-16 lg:py-24">

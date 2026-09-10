@@ -5,6 +5,7 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { CtaSection } from "@/components/home/CtaSection";
 import { Stagger, StaggerItem, Reveal } from "@/components/motion/Reveal";
 import { getPublishedProjects } from "@/lib/data/equipment-query";
+import { BreadcrumbJsonLd } from "@/components/JsonLd";
 
 export const dynamic = "force-dynamic";
 
@@ -33,11 +34,13 @@ export default async function ProjectsPage({
   setRequestLocale(locale);
   const isAr = locale === "ar";
   const t = await getTranslations("projectsPage");
+  const tn = await getTranslations("nav");
 
   const projects = await getPublishedProjects();
 
   return (
     <main>
+      <BreadcrumbJsonLd locale={locale} items={[{ name: tn("projects"), path: "/projects" }]} />
       <PageHeader eyebrow={t("eyebrow")} title={t("title")} subtitle={t("subtitle")} />
 
       <section className="bg-cream py-20 lg:py-28">

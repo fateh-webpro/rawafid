@@ -6,6 +6,7 @@ import { Link } from "@/i18n/navigation";
 import { Reveal } from "@/components/motion/Reveal";
 import { getPostBySlug } from "@/lib/data/equipment-query";
 import { buildAlternates, buildOpenGraph, buildTwitterCard } from "@/lib/seo";
+import { BlogPostingJsonLd, BreadcrumbJsonLd } from "@/components/JsonLd";
 
 export const dynamic = "force-dynamic";
 
@@ -42,6 +43,7 @@ export default async function PostPage({
   setRequestLocale(locale);
   const isAr = locale === "ar";
   const t = await getTranslations("blogPage");
+  const tn = await getTranslations("nav");
 
   const post = await getPostBySlug(slug);
   if (!post) notFound();
@@ -57,6 +59,22 @@ export default async function PostPage({
 
   return (
     <main>
+      <BreadcrumbJsonLd
+        locale={locale}
+        items={[
+          { name: tn("blog"), path: "/blog" },
+          { name: title, path: `/blog/${slug}` },
+        ]}
+      />
+      <BlogPostingJsonLd
+        locale={locale}
+        slug={slug}
+        headline={title}
+        description={body.slice(0, 160)}
+        image={post.cover}
+        datePublished={post.publishedAt ?? post.createdAt}
+        dateModified={post.updatedAt}
+      />
       <article className="bg-white pb-20">
         {/* الغلاف */}
         <div className="relative flex min-h-[46vh] items-end overflow-hidden bg-navy-deep pt-28">

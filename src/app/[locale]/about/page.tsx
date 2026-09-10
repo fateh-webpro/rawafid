@@ -15,6 +15,7 @@ import { StatsBar } from "@/components/home/StatsBar";
 import { CtaSection } from "@/components/home/CtaSection";
 import { LogoMark } from "@/components/brand/LogoMark";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
+import { BreadcrumbJsonLd } from "@/components/JsonLd";
 
 const valueIcons = {
   excellence: Award,
@@ -62,9 +63,11 @@ export default async function AboutPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("aboutPage");
+  const tn = await getTranslations("nav");
 
   return (
     <main>
+      <BreadcrumbJsonLd locale={locale} items={[{ name: tn("about"), path: "/about" }]} />
       <PageHeader eyebrow={t("eyebrow")} title={t("title")} subtitle={t("subtitle")} />
 
       {/* قصة العلامة */}

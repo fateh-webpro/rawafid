@@ -17,6 +17,7 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { CtaSection } from "@/components/home/CtaSection";
 import { Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { serviceSlugs } from "@/lib/data/categories";
+import { BreadcrumbJsonLd } from "@/components/JsonLd";
 
 const icons = {
   "operated-rental": UserCog,
@@ -57,9 +58,11 @@ export default async function ServicesPage({
   setRequestLocale(locale);
   const t = await getTranslations("servicesPage");
   const ts = await getTranslations("services");
+  const tn = await getTranslations("nav");
 
   return (
     <main>
+      <BreadcrumbJsonLd locale={locale} items={[{ name: tn("services"), path: "/services" }]} />
       <PageHeader eyebrow={t("eyebrow")} title={t("title")} subtitle={t("subtitle")} />
 
       <section className="bg-white py-20 lg:py-28">
