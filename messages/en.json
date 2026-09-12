@@ -123,6 +123,10 @@
     "requestUnit": "Request This Machine",
     "whatsappMsg": "Hello, I would like to inquire about renting: {name}"
   },
+  "forkliftsLanding": {
+    "metaTitle": "Forklift Rental Riyadh | Rawafid Saba Equipment",
+    "metaDescription": "Forklift rental in Riyadh for warehouses, logistics, and project sites. Flexible rental options and reliable equipment from Rawafid Saba Equipment."
+  },
   "aboutPage": {
     "eyebrow": "About Us",
     "title": "Rawafid Saba Equipment",

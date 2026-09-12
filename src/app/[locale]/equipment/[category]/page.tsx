@@ -40,6 +40,31 @@ export async function generateMetadata({
     };
   }
 
+  if (category === "forklifts") {
+    const forklifts = await getTranslations({ locale, namespace: "forkliftsLanding" });
+    const path = `/equipment/${category}`;
+    const image = cat.image || cat.equipment.find((unit) => unit.image)?.image;
+
+    return {
+      title: { absolute: forklifts("metaTitle") },
+      description: forklifts("metaDescription"),
+      alternates: buildAlternates(locale, path),
+      openGraph: buildOpenGraph(
+        locale,
+        path,
+        forklifts("metaTitle"),
+        forklifts("metaDescription"),
+        image
+      ),
+      twitter: buildTwitterCard(
+        locale,
+        forklifts("metaTitle"),
+        forklifts("metaDescription"),
+        image
+      ),
+    };
+  }
+
   const name = locale === "ar" ? cat.nameAr : cat.nameEn;
   const opLabel =
     cat.operator === "both" ? t("opBoth") : cat.operator === "self" ? t("opSelf") : t("opOperated");
