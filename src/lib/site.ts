@@ -5,6 +5,8 @@ export const site = {
   phone: "+966538131822",
   phoneDisplay: "+966 53 813 1822",
   whatsapp: "966538131822",
+  email: "info@rawafidequipment.com",
+  salesEmail: "sales@rawafidequipment.com",
   city: "الرياض",
   foundedYear: 2018,
   stats: {

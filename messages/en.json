@@ -288,7 +288,9 @@
     "waCategory": "Equipment",
     "waDuration": "Period",
     "waCity": "City",
-    "waDetails": "Details"
+    "waDetails": "Details",
+    "emailGeneral": "General Email",
+    "emailSales": "Sales"
   },
   "common": {
     "readMore": "Read More",
@@ -313,6 +315,8 @@
     "ourServices": "Our Services",
     "contactUs": "Contact Us",
     "address": "Riyadh, Saudi Arabia",
-    "rights": "All rights reserved"
+    "rights": "All rights reserved",
+    "emailGeneral": "General Email",
+    "emailSales": "Sales"
   }
 }

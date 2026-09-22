@@ -1,6 +1,7 @@
 import { Phone, MapPin, Mail } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { getSettings, activeSocials } from "@/lib/settings";
+import { site } from "@/lib/site";
 import { SocialLinks } from "@/components/layout/SocialLinks";
 
 function WhatsAppGlyph({ size = 22 }: { size?: number }) {
@@ -17,7 +18,8 @@ export async function ContactMethods({ locale }: { locale: string }) {
   const phone = s["contact.phone"];
   const phoneDisplay = s["contact.phoneDisplay"];
   const whatsapp = s["contact.whatsapp"];
-  const email = s["contact.email"];
+  const email = s["contact.email"] || site.email;
+  const salesEmail = s["contact.salesEmail"] || site.salesEmail;
   const socials = activeSocials(s);
 
   const waMsg =
@@ -70,31 +72,39 @@ export async function ContactMethods({ locale }: { locale: string }) {
         </span>
       </a>
 
-      {/* البريد */}
-      {email ? (
-        <a
-          href={`mailto:${email}`}
-          className="group flex items-center gap-4 rounded-xl border border-navy-20/60 bg-white p-5 transition-colors hover:border-gold"
-        >
-          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-navy text-gold transition-colors group-hover:bg-gold group-hover:text-navy">
-            <Mail size={21} />
-          </span>
-          <span className="min-w-0">
-            <span className="block font-heading font-bold text-navy">{t("emailTitle")}</span>
-            <span dir="ltr" className="latin-nums block text-start text-sm text-navy-80">{email}</span>
-          </span>
-        </a>
-      ) : (
-        <div className="flex items-center gap-4 rounded-xl border border-navy-20/60 bg-white p-5">
-          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-cream text-navy-60">
-            <Mail size={21} />
-          </span>
-          <span>
-            <span className="block font-heading font-bold text-navy">{t("emailTitle")}</span>
-            <span className="block text-sm text-gray">{t("emailPending")}</span>
-          </span>
+      {/* البريد الإلكتروني */}
+      <div className="flex items-center gap-4 rounded-xl border border-navy-20/60 bg-white p-5">
+        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-navy text-gold">
+          <Mail size={21} />
+        </span>
+        <div className="min-w-0 space-y-1">
+          <span className="block font-heading font-bold text-navy">{t("emailTitle")}</span>
+          {email ? (
+            <div className="flex flex-wrap items-center gap-x-2 text-sm">
+              <span className="text-gray text-xs">{t("emailGeneral")}:</span>
+              <a
+                href={`mailto:${email}`}
+                className="text-navy-80 hover:text-gold transition-colors font-medium latin-nums"
+                dir="ltr"
+              >
+                {email}
+              </a>
+            </div>
+          ) : null}
+          {salesEmail ? (
+            <div className="flex flex-wrap items-center gap-x-2 text-sm">
+              <span className="text-gray text-xs">{t("emailSales")}:</span>
+              <a
+                href={`mailto:${salesEmail}`}
+                className="text-navy-80 hover:text-gold transition-colors font-medium latin-nums"
+                dir="ltr"
+              >
+                {salesEmail}
+              </a>
+            </div>
+          ) : null}
         </div>
-      )}
+      </div>
 
       {/* الموقع */}
       <div className="flex items-center gap-4 rounded-xl border border-navy-20/60 bg-white p-5">

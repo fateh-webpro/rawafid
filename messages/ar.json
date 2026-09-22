@@ -252,6 +252,8 @@
     "callDesc": "تحدث مع فريق المبيعات مباشرة",
     "emailTitle": "البريد الإلكتروني",
     "emailPending": "يُضاف قريباً",
+    "emailGeneral": "البريد العام",
+    "emailSales": "المبيعات",
     "addressTitle": "الموقع",
     "addressValue": "الرياض، المملكة العربية السعودية",
     "followUs": "تابعنا على",
@@ -312,6 +314,8 @@
     "quickLinks": "روابط سريعة",
     "ourServices": "خدماتنا",
     "contactUs": "تواصل معنا",
+    "emailGeneral": "البريد العام",
+    "emailSales": "المبيعات",
     "address": "الرياض، المملكة العربية السعودية",
     "rights": "جميع الحقوق محفوظة"
   }

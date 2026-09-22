@@ -35,7 +35,8 @@ export function SettingsForm({ values }: { values: Record<string, string> }) {
           <Text name="contact.phone" label="رقم الهاتف (للاتصال)" ltr />
           <Text name="contact.phoneDisplay" label="الهاتف كما يظهر" ltr />
           <Text name="contact.whatsapp" label="رقم واتساب (أرقام فقط بمقدمة الدولة)" ltr />
-          <Text name="contact.email" label="البريد الإلكتروني (يظهر بالموقع)" ltr />
+          <Text name="contact.email" label="البريد العام (يظهر بالموقع)" ltr />
+          <Text name="contact.salesEmail" label="بريد المبيعات (يظهر بالموقع)" ltr />
           <Text name="quotes.notifyEmail" label="بريد استقبال الطلبات (للإشعارات)" ltr />
         </div>
       </Section>

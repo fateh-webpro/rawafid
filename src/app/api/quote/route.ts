@@ -84,9 +84,14 @@ export async function POST(req: Request) {
 
     // إشعار بريدي (يعمل عند ضبط SMTP + بريد الاستقبال)
     const settings = await getSettings();
-    const to = settings["quotes.notifyEmail"] || settings["contact.email"];
+    const to =
+      process.env.QUOTE_NOTIFICATION_EMAIL ||
+      settings["quotes.notifyEmail"] ||
+      settings["contact.email"] ||
+      "info@rawafidequipment.com";
+
     if (to) {
-      // لا نُعطّل الاستجابة على فشل البريد
+      // لا نُعطّل الاستجابة على فشل البريد ولا نفقد الطلب
       void sendQuoteEmail(to, {
         name: d.name,
         phone: d.phone,
@@ -95,6 +100,9 @@ export async function POST(req: Request) {
         durationLabel: DURATION_AR[d.duration] ?? d.duration,
         city: d.city,
         details: d.details,
+        createdAt: quote.createdAt,
+      }).catch((err) => {
+        console.error("sendQuoteEmail background error:", err);
       });
     }
 

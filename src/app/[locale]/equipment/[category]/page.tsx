@@ -16,6 +16,17 @@ import {
 } from "@/lib/seo";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 
+const categorySeoNamespaces = {
+  forklifts: "forkliftsLanding",
+  "mobile-cranes": "mobileCranesLanding",
+  "jcb-backhoes": "jcbBackhoesLanding",
+  bobcats: "bobcatsLanding",
+  "scissor-lifts": "scissorLiftsLanding",
+  "man-lifts": "manLiftsLanding",
+  "tower-lights": "towerLightsLanding",
+  telehandlers: "telehandlersLanding",
+} as const;
+
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
@@ -40,26 +51,28 @@ export async function generateMetadata({
     };
   }
 
-  if (category === "forklifts") {
-    const forklifts = await getTranslations({ locale, namespace: "forkliftsLanding" });
+  const seoNamespace = categorySeoNamespaces[category as keyof typeof categorySeoNamespaces];
+
+  if (seoNamespace) {
+    const seo = await getTranslations({ locale, namespace: seoNamespace });
     const path = `/equipment/${category}`;
     const image = cat.image || cat.equipment.find((unit) => unit.image)?.image;
 
     return {
-      title: { absolute: forklifts("metaTitle") },
-      description: forklifts("metaDescription"),
+      title: { absolute: seo("metaTitle") },
+      description: seo("metaDescription"),
       alternates: buildAlternates(locale, path),
       openGraph: buildOpenGraph(
         locale,
         path,
-        forklifts("metaTitle"),
-        forklifts("metaDescription"),
+        seo("metaTitle"),
+        seo("metaDescription"),
         image
       ),
       twitter: buildTwitterCard(
         locale,
-        forklifts("metaTitle"),
-        forklifts("metaDescription"),
+        seo("metaTitle"),
+        seo("metaDescription"),
         image
       ),
     };

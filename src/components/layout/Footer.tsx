@@ -13,7 +13,8 @@ export async function Footer({ locale }: { locale: string }) {
   const s = await getSettings();
   const phone = s["contact.phone"];
   const phoneDisplay = s["contact.phoneDisplay"];
-  const email = s["contact.email"];
+  const email = s["contact.email"] || site.email;
+  const salesEmail = s["contact.salesEmail"] || site.salesEmail;
   const socials = activeSocials(s);
 
   const links = [
@@ -81,7 +82,24 @@ export async function Footer({ locale }: { locale: string }) {
                     className="flex items-center gap-3 hover:text-gold transition-colors"
                   >
                     <Mail size={17} className="text-gold shrink-0" />
-                    <span dir="ltr" className="latin-nums">{email}</span>
+                    <span className="text-sm">
+                      <span className="text-navy-40 me-1.5">{t("emailGeneral")}:</span>
+                      <span dir="ltr" className="latin-nums">{email}</span>
+                    </span>
+                  </a>
+                </li>
+              ) : null}
+              {salesEmail ? (
+                <li>
+                  <a
+                    href={`mailto:${salesEmail}`}
+                    className="flex items-center gap-3 hover:text-gold transition-colors"
+                  >
+                    <Mail size={17} className="text-gold shrink-0" />
+                    <span className="text-sm">
+                      <span className="text-navy-40 me-1.5">{t("emailSales")}:</span>
+                      <span dir="ltr" className="latin-nums">{salesEmail}</span>
+                    </span>
                   </a>
                 </li>
               ) : null}

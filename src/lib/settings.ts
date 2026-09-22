@@ -10,9 +10,10 @@ export const SETTING_DEFAULTS: Record<string, string> = {
   "contact.phone": "+966538131822",
   "contact.phoneDisplay": "+966 53 813 1822",
   "contact.whatsapp": "966538131822",
-  "contact.email": "",
+  "contact.email": "info@rawafidequipment.com",
+  "contact.salesEmail": "sales@rawafidequipment.com",
   // بريد استقبال الطلبات (إن اختلف عن بريد التواصل)
-  "quotes.notifyEmail": "",
+  "quotes.notifyEmail": "info@rawafidequipment.com",
 
   // الأرقام
   "stats.foundedYear": "2018",
