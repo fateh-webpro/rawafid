@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Almarai, Tajawal, Montserrat } from "next/font/google";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
@@ -103,6 +104,16 @@ export default async function LocaleLayout({
       className={`${almarai.variable} ${tajawal.variable} ${montserrat.variable}`}
     >
       <body className="antialiased">
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18495577316"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads-tag" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'AW-18495577316');`}
+        </Script>
         <JsonLd locale={locale} settings={settings} />
         <NextIntlClientProvider>
           <SiteConfigProvider value={siteConfig}>
