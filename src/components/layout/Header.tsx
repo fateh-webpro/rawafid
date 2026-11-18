@@ -47,6 +47,12 @@ export function Header() {
           : "bg-transparent py-5"
       )}
     >
+      <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-KGD55TC7"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+      </script>
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 lg:px-8">
         <Link href="/" aria-label={locale === "ar" ? "روافد سبأ — الرئيسية" : "Rawafid Saba — Home"}>
           <Logo locale={locale} onDark markClassName="h-8" />
