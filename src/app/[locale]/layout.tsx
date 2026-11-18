@@ -101,8 +101,18 @@ export default async function LocaleLayout({
       dir={dir}
       className={`${almarai.variable} ${tajawal.variable} ${montserrat.variable}`}
     >
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtm.js?id=GTM-KGD55TC7"
+          strategy="afterInteractive"
+        />
+        <Script id="google-tag-manager" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());`}
+        </Script>
+      </head>
       <body className="antialiased">
-        
         <JsonLd locale={locale} settings={settings} />
         <NextIntlClientProvider>
           <SiteConfigProvider value={siteConfig}>
